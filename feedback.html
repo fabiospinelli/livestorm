@@ -39,13 +39,11 @@
       const sessionid = encodeURIComponent(getParam('sessionid'));
       const baseTypeformURL = 'https://form.typeform.com/to/QLpC9jaQ';
 
-      const redirectURL = `${baseTypeformURL}#sessionid=${sessionid}`;
+      const redirectURL = `${baseTypeformURL}?sessionid=${sessionid}`;
       console.log('Redirecting to:', redirectURL);
 
-      // Update fallback link too
       document.getElementById('fallback').href = redirectURL;
 
-      // Redirect after short delay
       setTimeout(() => {
         window.location.href = redirectURL;
       }, 1500);
