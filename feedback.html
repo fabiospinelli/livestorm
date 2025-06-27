@@ -30,28 +30,22 @@
     }
   </style>
   <script>
-    // Helper to get query params
     function getParam(name) {
       const params = new URLSearchParams(window.location.search);
       return params.get(name) || '';
     }
 
-    // Build and perform redirect
     document.addEventListener('DOMContentLoaded', () => {
       const sessionid = encodeURIComponent(getParam('sessionid'));
       const baseTypeformURL = 'https://form.typeform.com/to/QLpC9jaQ';
 
-      // Map to your Typeform field variable names:
-      //   – sessionId → 'session'
-      //   – name      → 'name'
-      const redirectURL =
-        `${baseTypeformURL}` +
-        `#session=${sessionid}`
-
-      // For demo: log it
+      const redirectURL = `${baseTypeformURL}#sessionid=${sessionid}`;
       console.log('Redirecting to:', redirectURL);
 
-      // Slight delay for UX, then redirect
+      // Update fallback link too
+      document.getElementById('fallback').href = redirectURL;
+
+      // Redirect after short delay
       setTimeout(() => {
         window.location.href = redirectURL;
       }, 1500);
@@ -65,14 +59,5 @@
     <div class="spinner"></div>
     <p>If you’re not redirected automatically, <a id="fallback" href="#">click here</a>.</p>
   </div>
-  <script>
-    // Fallback link
-    document.getElementById('fallback').addEventListener('click', () => {
-      const params = window.location.search;
-      const sessionid = new URLSearchParams(params).get('sessionid');
-      const url = `https://form.typeform.com/to/QLpC9jaQ#sessionid=${encodeURIComponent(session)}`;
-      window.location.href = url;
-    });
-  </script>
 </body>
 </html>
