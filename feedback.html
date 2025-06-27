@@ -38,8 +38,7 @@
 
     // Build and perform redirect
     document.addEventListener('DOMContentLoaded', () => {
-      const sessionId = encodeURIComponent(getParam('sessionId'));
-      const sessionName = encodeURIComponent(getParam('name'));
+      const sessionid = encodeURIComponent(getParam('sessionid'));
       const baseTypeformURL = 'https://form.typeform.com/to/QLpC9jaQ';
 
       // Map to your Typeform field variable names:
@@ -47,8 +46,7 @@
       //   – name      → 'name'
       const redirectURL =
         `${baseTypeformURL}` +
-        `?session=${sessionId}` +
-        `&name=${sessionName}`;
+        `#session=${sessionid}`
 
       // For demo: log it
       console.log('Redirecting to:', redirectURL);
@@ -71,9 +69,8 @@
     // Fallback link
     document.getElementById('fallback').addEventListener('click', () => {
       const params = window.location.search;
-      const session = new URLSearchParams(params).get('sessionId');
-      const name = new URLSearchParams(params).get('name');
-      const url = `https://form.typeform.com/to/QLpC9jaQ?session=${encodeURIComponent(session)}&name=${encodeURIComponent(name)}`;
+      const sessionid = new URLSearchParams(params).get('sessionid');
+      const url = `https://form.typeform.com/to/QLpC9jaQ#sessionid=${encodeURIComponent(session)}`;
       window.location.href = url;
     });
   </script>
